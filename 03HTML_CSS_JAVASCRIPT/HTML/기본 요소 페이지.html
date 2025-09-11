@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 기본 요소 테스트 페이지</title>
+</head>
+<body>
+    <h1><strong>HTML 기본 요소 테스트 페이지</strong></h1><br>
+
+    <a href="#소개">소개</a> |
+    <a href="#목록">목록</a> |
+    <a href="#설문조사">설문조사</a> |
+    <a href="#팀원정보">팀원정보</a>
+    
+    <hr>
+
+    <div>
+        <h2 id="소개"><strong>소개</strong></h2>
+        <p>이 페이지는 HTML의 자주 사용하는 태그들을 테스트하기 위해 만들어졌습니다.</p>
+    </div>
+
+    <hr>
+
+    <h2 id="목록"><strong>목록 테스트</strong></h2>
+    <h3><strong>순서 있는 목록(ol)</strong></h3>
+    <ol> 
+            <li>HTML 배우기</li>
+            <li>CSS 배우기</li>
+            <li>Javascript 배우기</li>
+        </ol>
+
+    <h3><strong>순서 없는 목록(ul)</strong></h3>
+    <ul>
+        <li>노트북</li>
+        <li>키보드</li>
+        <li>마우스</li>
+    </ul>
+
+    <hr>
+
+        <h2 id="설문조사"><strong>설문조사 폼</strong></h2>
+      <label>이름:</label>
+      <input type="name"><br><br>
+    
+      <label>이메일:</label>
+      <input type="email">
+
+      <h3><strong>1.좋아하는 과일을 선택하세요.(체크박스)</strong></h3>
+      <input type="checkbox" value="apple">
+      <label">사과</label><br>
+
+      <input type="checkbox" value="banana">
+      <label">바나나</label><br>
+
+      <input type="checkbox" value="grape">
+      <label">포도</label><br>
+
+    <h3><strong>2.선호하는 개발 언어는 무엇인가요? (라디오 버튼)</strong></h3>
+    <input type="radio" value="html">
+    <label">HTML</label><br>
+
+    <input type="radio" value="css">
+    <label">CSS</label><br>
+
+    <input type="radio" value="js">
+    <label">JavaScript</label><br>
+
+
+<p>의견:</p>
+<textarea></textarea><br>
+<input type="submit">
+
+<hr>
+
+<h2 id="팀원정보"><strong>팀원 정보 표</strong></h2>
+<p>프로젝트 팀원 목록</p>
+   <table border="1px">
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>역할</th>
+            <th>이메일</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+           <td>홍길동</td>
+           <td>프론트엔드</td>
+           <td>hong@example.com</td>
+    </tr>
+  <tr>
+           <td>김영희</td>
+           <td>백엔드</td>
+           <td>kim@example.com</td>
+    </tr>  
+   <tr>
+           <td>이철수</td>
+           <td>디자인</td>
+           <td>lee@example.com</td>
+    </tr>
+    </tbody>
+   </table>
+   <hr>
+
+   <h4>©2025 HTML 테스트페이지 | 문의: test@example.com</h4>
+
+
+</body>
+</html>

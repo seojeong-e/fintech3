@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02서식태그</title>
+</head>
+<body>
+    <!-- 제목 태그 h1 ~ h6(중요도에 따라 바뀜) -->
+     <!-- h1 가장 큰 제목, h6이 가장 작은 제목 -->
+
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h5>제목5</h5>
+    <h6>제목6</h6>
+
+    <hr> <!-- 선을 하나 쭉 그어주는 태그-->
+
+    <!-- 내용 태그 p(paragraph) 문단 --> 
+     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo iure at eaque vitae, praesentium atque minus suscipit libero facilis quisquam accusamus laboriosam aut expedita accusantium beatae ex aperiam vero hic.</p>
+     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, nobis!</p>
+
+    <hr>
+    <!-- 콘텐츠를 그룹화 하는 태그 div -->
+    <div>
+        <p>요리</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div>
+        <p>날씨</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+    </div>
+
+<br>
+
+    <!-- 문장을 강조할 때 사용하는 태그 b,storng,i,em -->
+     <strong>강조할 문장 1 strong</strong><br>
+     <b>강조할 문장 2 b</b><br>
+     <em>강조할 문장 3 em</em><br>
+     <i>강조할 문장 4 i</i><br>
+
+     <hr>
+
+     <!-- 링크 태그 a -->
+      <a href="https://www.naver.com">네이버</a><br>
+      <a href="https://www.naver.com" target="_blank">네이버 새창 열기</a><br>
+      <a href="https://www.naver.com" target="_self">네이버_self</a>
+
+      <hr>
+      <!-- 태그의 종류 -->
+      <!-- 인라인 요소 a, span, strong, b, em, i 자동 줄바꿈이 안되는 태그 -->
+      <!-- 블록 요소 h, p 자동 줄바꿈이 되는 태그 -->
+
+      <p>블록요소 1</p>
+      <p>블록요소 2</p>
+
+      <div>
+        <strong>인라인 요소1</strong>
+        <em>인라인 요소2</em>
+        <a href="https://www.naver.com">인라인 요소3</a>
+      </div>
+
+      <p>span 태그는 <span><strong>인라인 요소</strong></span> 안에서 그룹화 하는 태그입니다.</p>
+
+<hr>
+<!-- 이미지 삽입 태그 img, figure-->
+ <!-- img태그로 이미지 넣기 -->
+
+ <img src="../img/다운로드.png" alt="강아지">
+ <img src="../img/다운로드2.png" alt="루피">
+<!-- src : 경로, alt : 이미지에 대한 설명 -->
+
+<!-- 시맨틱 요소 추가 -->
+ <figure>
+    <img src="../img/다운로드2.png" alt="loopy">
+ </figure>
+ <figcaption>
+    루피가 쳐다보는 사진
+ </figcaption> 
+
+</body>
+</html>
