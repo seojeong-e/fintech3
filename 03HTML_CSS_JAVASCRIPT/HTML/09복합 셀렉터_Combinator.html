@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../CSS/02CSS_Combinator.css">
+</head>
+<body>
+
+<h1>복합 셀렉터 (Combinator)</h1>
+
+<h2>후손 셀렉터 (Descendant Combinator)</h2>
+<p>자식, 자손(손자, 손녀, 증손자, 고손자 등등)</p>
+<p>셀렉터A 셀렉터B</p>
+
+
+  <h1>Heading</h1>
+  <div>
+    <p>paragraph 1</p>
+    <p>paragraph 2</p>
+    <span><p>paragraph 3</p></span>
+  </div>
+  <p>paragraph 4</p>
+
+  <hr>
+
+  <h2>자식 셀렉터 (Child Combinator)</h2> 
+  <p>셀렉터A > 셀렉터B</p>
+  <p>자식만 선택</p>
+
+  <h1>Heading</h1>
+  <div>
+    <p>paragraph 5</p>
+    <p>paragraph 6</p>
+    <span><p>paragraph 7</p></span>
+  </div>
+  <p>paragraph 8</p>
+
+  <hr>
+  <h2>형제(동위) 셀렉터 (Sibling Combinator)</h2>
+  <p>인접 형제 셀렉터(Adjacent Sibling Combinator)</p>
+  <p>셀렉터A의 형제 요소 중 셀렉터A 바로 뒤에 위치하는 셀렉터B 요소를 선택한다. 
+    A와 B 사이에 다른 요소가 존재하면 선택되지 않는다.</p>
+  <p>셀렉터A + 셀렉터B</p>
+
+  <div>A div element.</div>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+
+  <p>The first paragraph.</p>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+
+  <h2>Another list</h2>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+
+<hr>
+<h2>일반 형제 셀렉터(General Sibling Combinator)</h2>
+<p>셀렉터A의 형제 요소 중 
+    셀렉터A 뒤에 위치하는 셀렉터B 요소를 모두 선택한다.</p>
+    <p>셀렉터A ~ 셀렉터B</p>
+
+<div id="gsc">    
+    <div>A div element.</div>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+
+  <p>The first paragraph.</p>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+
+  <h2>Another list</h2>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+</div>
+
+</body>
+</html>

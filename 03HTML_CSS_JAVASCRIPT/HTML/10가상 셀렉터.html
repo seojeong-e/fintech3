@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../CSS/03CSS_Pseudo_selector.css">
+<body>
+<h2>가상 클래스 셀렉터 (Pseudo-Class Selector)</h2>
+
+  <a href="#">Hover me</a><br><br>
+  <input type="text" placeholder="focus me">
+
+  <hr>
+
+  <h2>링크 셀렉터(Link pseudo-classes), 
+    동적 셀렉터(User action pseudo-classes)</h2>
+
+  <a href="#" target="_blank">This is a link</a><br>
+  <input type="text" value="I'll be red when focused"><br>
+  <input type="password" value="I'll be red when focused">
+
+
+<hr>
+
+<h2>UI 요소 상태 셀렉터(UI element states pseudo-classes)</h2>
+  <input type="radio" checked="checked" value="male" name="gender"> <span>Male</span><br>
+  <input type="radio" value="female" name="gender"> <span>Female</span><br>
+  <input type="radio" value="neuter" name="gender" disabled> <span>Neuter</span><hr>
+
+  <input type="checkbox" checked="checked" value="bicycle"> <span>I have a bicycle</span><br>
+  <input type="checkbox" value="car"> <span>I have a car</span><br>
+  <input type="checkbox" value="motorcycle" disabled> <span>I have a motorcycle</span>
+
+<hr>
+
+<h2> 구조 가상 클래스 셀렉터(Structural pseudo-classes)</h2>
+
+<div id="firstchild">   
+  <p>This paragraph is the first child of its parent (body).</p>
+
+  <h1>Welcome to My Homepage</h1>
+  <p>This paragraph is not the first child of its parent.</p>
+
+  <div>
+    <p>This paragraph is the first child of its parent (div).</p>
+    <p>This paragraph is not the first child of its parent.</p>
+  </div>
+</div>
+
+
+<hr>
+
+<h2>:nth-child(n)</h2>
+<p>셀렉터에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택한다.</p>
+
+<h2>:nth-last-child(n)</h2>
+<p>셀렉터에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택한다.</p>
+
+<div id="nthchild">  
+<ol>
+    <li>Espresso</li>
+    <li>Americano</li>
+    <li>Caffe Latte</li>
+    <li>Caffe Mocha</li>
+    <li>Caramel Latte</li>
+    <li>Cappuccino</li>
+  </ol>
+
+  <ul>
+    <li>Espresso</li>
+    <li>Americano</li>
+    <li>Caffe Latte</li>
+    <li>Caffe Mocha</li>
+    <li>Caramel Latte</li>
+    <li>Cappuccino</li>
+  </ul>
+</div>
+
+<hr>
+
+<h2>:first-of-type</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 첫번째 등장하는 요소를 선택한다.</p>
+
+<h2>:last-of-type</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 마지막에 등장하는 요소를 선택한다.</p>
+
+<h2>:nth-of-type(n)</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 앞에서 n번째에 등장하는 요소를 선택한다.</p>
+
+<h2>:nth-last-of-type(n)</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 뒤에서 n번째에 등장하는 요소를 선택한다.</p>
+
+<div id="typeof">   
+  <h1>This is a heading</h1>
+  <p>The first paragraph.</p>
+  <p>The second paragraph.</p>
+  <p>The third paragraph.</p>
+  <p>The fourth paragraph.</p>
+  <div>
+    <h1>This is a heading</h1>
+    <p>The first paragraph.</p>
+    <p>The second paragraph.</p>
+    <p>The third paragraph.</p>
+    <p>The fourth paragraph.</p>
+  </div>
+</div>
+
+<hr>
+
+<h2>부정 셀렉터(Negation pseudo-class)</h2>
+<p>:not(셀렉터)	
+셀렉터에 해당하지 않는 모든 요소를 선택한다.</p>
+
+<div id="not">   
+  <input type="text" value="Text input">
+  <input type="email" value="email input">
+  <input type="password" value="Password input">
+</div>
+
+
+<hr>
+
+<h2>정합성 체크 셀렉터(validity pseudo-class)</h2>
+<p>:valid(셀렉터)
+    정합성 검증이 성공한 input 요소 또는 form 요소를 선택한다.</p>
+<p>:invalid(셀렉터)
+    정합성 검증이 실패한 input 요소 또는 form 요소를 선택한다.</p>
+
+<div id="valid">    
+  <label>입력값이 반드시 필요
+    <input type="text" required>
+  </label>
+  <br>
+  <label>특수문자를 포함하지 않는 4자리 문자 또는 숫자
+    <input type="text" value="ab1!"
+      pattern="[a-zA-Z0-9]{4}" required>
+  </label>
+  <br>
+  <label>핸드폰 번호 형식
+    <input type="text" value="010-1111-2222"
+      pattern="^\d{3}-\d{3,4}-\d{4}$" required>
+  </label>
+</div>
+
+<hr>
+
+<h2>가상 요소 셀렉터 (Pseudo-Element Selector)</h2>
+<p>::first-letter 콘텐츠의 첫글자를 선택한다.
+::first-line 콘텐츠의 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
+::after	콘텐츠의 뒤에 위치하는 공간을 선택한다. 일반적으로 content 프로퍼티와 함께 사용된다.
+::before 콘텐츠의 앞에 위치하는 공간을 선택한다. 일반적으로 content 프로퍼티와 함께 사용된다.
+::selection	드래그한 콘텐츠를 선택한다. iOS Safari 등 일부 브라우저에서 동작 않는다.</p>
+
+<div id="pseudo">  
+ <h1>This is a heading</h1>
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo illum sunt distinctio sed, tempore, repellat rerum et ea laborum voluptatum! Quisquam error fugiat debitis maiores officiis, tenetur ullam amet in!</p>
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

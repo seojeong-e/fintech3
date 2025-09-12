@@ -1,0 +1,178 @@
+
+/* 가상 클래스 셀렉터 (Pseudo-Class Selector) */
+a:hover {
+    background-color: yellow;
+}
+
+input:focus {
+    background-color: red;
+}
+
+/* 링크 셀렉터(Link pseudo-classes), 
+    동적 셀렉터(User action pseudo-classes) 
+    :link, :visited, :hover, :active, :focus*/
+
+a:link {
+    color: orange;
+}
+
+a:visited {
+    color: green;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+a:active {
+    color: blue;
+    font-size: 40px;
+}
+
+input[type="text"]:focus
+input[type="password"]:focus{
+    color: red;
+}
+
+input[type = "password"]{
+    background-color: aqua
+}
+
+/* UI 요소 상태 셀렉터(UI element states pseudo-classes) */
+/* :checked, ":enabled, disabled*/
+
+input:enabled + span {
+    color: blue;
+}
+
+input:disabled + span {
+    color: gray;
+    text-decoration: line-through;}
+
+input:checked + span{
+    color: red;
+}
+
+/* 구조 가상 클래스 셀렉터(Structural pseudo-classes) */
+#firstchild p:first-child{
+    color: brown;
+}
+
+#firstchild p:last-child{
+    background-color: blue;
+}
+
+/* nth-child(n)
+<p>셀렉터에 해당하는 모든 요소 중 앞에서 n번째 자식인 요소를 선택한다.</p>
+
+nth-last-child(n)
+<p>셀렉터에 해당하는 모든 요소 중 뒤에서 n번째 자식인 요소를 선택한다.</p>*/
+
+#nthchild ol > li:nth-child(2n) {
+    color: orange;
+}
+#nthchild ol > li:nth-child(2n+1){
+    color: green;
+}
+
+#nthchild ol > li:first-child{
+    color: red;
+}
+#nthchild ol > li:last-child{
+    color: blue;
+}
+
+#nthchild ol > li:nth-child(4) {
+    background-color: brown;
+}
+
+#nthchild ul > :nth-last-child(2n+1) {
+    color: red;
+}
+#nthchild ul > :nth-last-child(2n) {
+    color: blue;
+}
+
+
+
+/* <h2>:first-of-type</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 첫번째 등장하는 요소를 선택한다.</p>
+
+<h2>:last-of-type</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 마지막에 등장하는 요소를 선택한다.</p>
+
+<h2>:nth-of-type(n)</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 앞에서 n번째에 등장하는 요소를 선택한다.</p>
+
+<h2>:nth-last-of-type(n)</h2>
+<p>셀렉터에 해당하는 요소의 부모 요소의 자식 요소 중 뒤에서 n번째에 등장하는 요소를 선택한다.</p> */
+
+#typeof p:first-of-type {
+    color: red;
+}
+
+#typeof p:last-of-type{
+    color: blue;
+}
+
+#typeof p:nth-of-type(2) {
+    color: green;
+}
+
+#typeof p:nth-last-of-type(2) {
+    color: orange;
+}
+
+#typeof p:first-child {
+    background-color: brown;
+}
+
+/* <부정 셀렉터(Negation pseudo-class)
+<p>:not(셀렉터)	
+셀렉터에 해당하지 않는 모든 요소를 선택한다.</p>
+ */
+
+#not input:not([type=password]) {
+    background-color: yellow;
+}
+
+/* <h2>정합성 체크 셀렉터(validity pseudo-class)</h2>
+<p>:valid(셀렉터)
+    정합성 검증이 성공한 input 요소 또는 form 요소를 선택한다.</p>
+<p>:invalid(셀렉터)
+    정합성 검증이 실패한 input 요소 또는 form 요소를 선택한다.</p> */
+
+#valid input[type="text"]:valid {
+    background-color: greenyellow;
+    color: black;
+}
+
+#valid input[type="text"]:invalid {
+    background-color: red;
+    color: black;
+}
+
+/* <h2>가상 요소 셀렉터 (Pseudo-Element Selector)</h2>
+<p>::first-letter 콘텐츠의 첫글자를 선택한다.
+::first-line 콘텐츠의 첫줄을 선택한다. 블록 요소에만 적용할 수 있다.
+::after	콘텐츠의 뒤에 위치하는 공간을 선택한다. 일반적으로 content 프로퍼티와 함께 사용된다.
+::before 콘텐츠의 앞에 위치하는 공간을 선택한다. 일반적으로 content 프로퍼티와 함께 사용된다.
+::selection	드래그한 콘텐츠를 선택한다. iOS Safari 등 일부 브라우저에서 동작 않는다.</p>
+ */
+
+#pseudo p::first-letter {font-size: 3em;}
+#pseudo p::first-line{color: red;}
+
+#pseudo h1::before{
+    content: "HTML!!!";
+    color: blue;
+}
+#pseudo h1::after{
+    content: "CSS3!!!";
+    color: red;
+}
+
+#pseudo ::selection{
+    color: red;
+    background-color: yellow;
+}
