@@ -1,0 +1,203 @@
+
+/* 폰트 굵기 바꾸기 */
+/* font-weight : normal, bold */
+
+#font_weight > h1{
+    font-weight: normal;
+}
+
+#font_weight > p > span{
+    font-weight: bold;
+}
+
+
+/* 폰트 크기 바꾸기 */
+/* font-size: px, em, rem */
+/* px: 모니터의 점 한 개, 해상도 사이즈와 개수가 일치 */
+/* em: 부모 요소를 기준으로 폰트 크기를 조정
+   부모요소 10px, 자식 2em => =자식은 20px이 됨 
+*/
+/* rem: html에 정의된 기본 크기에 비례
+        html 기본 폰트가 16px일 때
+        2rem => 32px
+ */
+
+#font_size > article > h1{
+    font-size: 60px;
+}
+
+#font_size > article > p{
+    font-size: 30px;
+}
+
+#font_size > article > a{
+    font-size: 15px;
+}
+
+html {
+    font-size: 20px;
+}
+
+#font_size_em > article{
+    font-size: 40px;
+}
+
+#font_size_em > article > h1{
+    /* 40 * 3 = 120px */
+    font-size: 3em;
+}
+
+#font_size_em > article > p{
+    /* 부모요소 article의 font-size가 40px이므로
+    p 요소의 1em은 40px  */
+    font-size: 1em; 
+}
+
+#font_size_em > article > a{
+    /* 40px의 반인 20px */
+    font-size: 0.5em;
+}
+
+/* rem 연습 */
+#font_size_rem > article{
+    font-size: 40px;
+}
+
+#font_size_rem > article > h1.em{
+    /* 40 * 3 = 120px */
+    font-size: 3em;
+}
+
+#font_size_rem > article > h1.rem{
+    /* 15 * 3 = 45px */
+    font-size: 3rem;
+}
+
+#font_size_rem > article > p.em{
+    /* 부모요소 article의 font-size가 40px이므로
+    p 요소의 1em은 40px  */
+    font-size: 1.5em; 
+}
+
+#font_size_rem > article > p.rem{
+    /* 부모요소 article의 font-size가 40px이므로
+    p 요소의 1em은 40px  */
+    font-size: 1.5rem; 
+}
+
+#font_size_rem > article > a.em{
+    /* 40px의 반인 20px */
+    font-size: 0.5em;
+}
+
+#font_size_rem > article > a.rem{
+    /* 40px의 반인 20px */
+    font-size: 0.5rem;
+}
+
+/* 폰트 모양 바꾸기 */
+#font_type li {
+    font-size: 40px;
+}
+
+#font_type li:nth-child(1) {
+    font-family: "돋움";
+    color: red;
+}
+
+#font_type li:nth-child(2) {
+    font-family: "굴림";
+    color: blue;
+}
+
+#font_type li:nth-of-type(3) {
+    font-family: serif;
+}
+
+#font_type li:last-child {
+    font-family: arial;
+    color: orange;
+}
+
+/* 폰트 색상 변경하기 */
+/* 빛의 3원색: Red, Green, Blue */
+/* red:0, green:0, blue:0 => black */
+/* red:100%, green:100%, blue:100% => white */
+/* 색상명 표기법 : red, orange */
+/* 16진수 표기법: 0-ff #556677 */
+/* RGB 표기법: rgb(red, green, blue)
+   red: 0-255
+   green: 0-255
+   blue: 0-255 */
+
+/* RGBA 표기법: rgb(red, green, blue, alpha(투명도) */
+
+#font_color li:first-child{
+    color: red;
+}
+
+#font_color li:nth-child(2){
+    color: #5555ff;
+}
+
+#font_color li:nth-of-type(3){
+    color: rgb(66, 100, 31);
+}
+
+#font_color li:nth-child(4) {
+    color: rgba(0, 255, 0, 0.3);
+}
+
+/* 텍스트 줄 간격 바꾸기 */
+#line_height{
+    border: 1px solid green;
+}
+
+#line_height .text1{
+    font-size: 20px;
+    line-height: 40px;
+    border: 1px solid red;
+}
+
+#line_height .text2{
+    font-size: 20px;
+    /* line-height: 0.5px; */
+    border: 1px solid blue;
+}
+
+#line_height > div{
+    border: 1px solid black;
+}
+
+/* 텍스트 정렬 방향 지정하기 */
+/* text-align:left, right, center, justify */
+
+#align p {
+    border: 1px solid black;
+}
+
+#align p:nth-child(1){
+    text-align: left;
+}
+#align p:nth-child(2){
+    text-align: right;
+}
+#align p:nth-child(3){
+    text-align: cneter;
+}
+#align p:nth-child(4){
+    text-align: justify;
+}
+
+/* 텍스트 자간 설정하기 */
+#letter_spacing p:nth-child(1){
+    letter-spacing: 5px;
+}
+
+#letter_spacing p:nth-child(1){
+    letter-spacing: 0px;
+}
+
+#letter_spacing p:nth-child(1){
+    letter-spacing: -5px;
+}

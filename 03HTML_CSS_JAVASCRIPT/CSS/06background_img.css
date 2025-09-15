@@ -1,0 +1,251 @@
+/* 배경 색 지정하기  */
+/* background-color: 색 */
+
+#backgcolor div:nth-child(1){
+    background-color: black;
+    color: white;
+}
+
+#backgcolor div:nth-child(2){
+    background-color: #aaaaaa;
+    color: white;
+}
+
+#backgcolor div:nth-child(3){
+    background-color: rgb(255,255,0);
+    color: brown;
+}
+
+#backgcolor div:nth-child(4){
+    background-color: rgba(0,255,255,0.3);
+    color: gray;
+}
+
+/* 무늬 넣기 */
+#backgcolor div:nth-child(5){
+    width: 300px;
+    height: 300px;
+    background:repeating-linear-gradient(
+        45deg,
+        #f06 0px,
+        #f06 20px,
+        #fff 20px,
+        #fff 40px
+    );
+    color: white;
+}
+
+#backgcolor div:nth-child(6){
+    background: radial-gradient(
+        #000 10%,
+        transparent 10%);
+    background-size: 20px, 20px
+}
+
+#backgcolor div:nth-child(7){
+    height: 300px;
+    background: repeating-linear-gradient(
+        90deg,
+        #f06 0px,
+        #f06 20px,
+        #fff 20px,
+        #fff 40px
+    ),
+    repeating-linear-gradient(
+        0deg,
+        #f06 0px,
+        #f06 20px,
+        #fff 20px,
+        #fff 40px
+    );
+    background-blend-mode: multiply;
+    color: white;
+}
+
+/* 배경 이미지 넣기 */
+/* background-image 배경이미지 삽입 */
+/* background-repeat 배경이미지를 반복 */
+/* background-position 배경이미지의 위치 */
+/* background-size 배경이미지의 크기 */
+/* background-attachment 배경 이미지가 움직이지 않게 고정 */
+
+#backimg div{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+/* 이미지 넣기 */
+#backimg div:nth-child(1){
+    background-image: url(../img/다운로드2.png);
+}
+
+/* 삽입된 이미지가 반복 */
+#backimg div:nth-child(2){
+    width: 500px;
+    height: 500px;
+    background-image: url(../img/car1_small.jpg);
+}
+
+/* 삽입한 이미지를 가로로만 반복 */
+#backimg div:nth-child(3){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/pattern.png);
+    background-repeat: repeat-x ;
+}
+
+/* 삽입한 이미지를 세로로만 반복 */
+#backimg div:nth-child(4){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/pattern.png);
+    background-repeat: repeat-y ;
+}
+
+/* 반복 없음 */
+#backimg div:nth-child(5){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/pattern.png);
+    background-repeat: no-repeat ;
+}
+
+/*이미지 위치 조정하기 */
+/* 정중앙 정렬 */
+#backimg div:nth-child(6){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/pattern.png);
+    background-repeat: no-repeat ;
+    background-position: center;
+}
+
+/* 중앙 아래 정렬*/
+#backimg div:nth-child(7){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/pattern.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+/* 우측 상단 */
+#backimg div:nth-child(8){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/pattern.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+}
+
+/* px 단위로 이미지 배치하기 */
+#backimg div:nth-child(9){
+    width: 300px;
+    height: 500px;
+    background-image: url(../img/pattern.png);
+    background-repeat: no-repeat;
+    background-position: 100px 100px;
+}
+
+/* % 단위로 이미지 배치하기 */
+#backimg div:nth-child(10){
+    width: 300px;
+    height: 300px;
+    background-image: url(../img/다운로드2.png);
+    background-repeat: no-repeat;
+    background-position: 40% 60%;
+}
+
+/* 배경 이미지 크기 조절하기 */
+#img_size div{
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+/* contain:삽입할 공간보다 이미지가 클 때 크기를 공간에 맞게 조정해서 넣음 */
+/* 원본이미지의 비율 유지 */
+#img_size div:first-child{
+    background-image: url(../img/rose.jpg);
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+}
+
+/* cover:이미지를 공간에 꽉 차게 사이즈 조절 */
+/* 공간에 맞춰서 이미지 비율 변경 */
+#img_size div:last-child{
+    background-image: url(../img/rose.jpg);
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+}
+
+
+/* 두 개의 이미지를 겹치고 싶을 때 */
+#twoinone{
+    width: 90vw;
+    height: 90vh;
+    margin: 4vh auto;
+    border: 1px solid black;
+}
+
+#twoinone div{
+    width: 100%;
+    height: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid red;
+    background-attachment: fixed; 
+}
+
+#twoinone div:first-child{
+    background-image: url(../img/car1.jpg);
+    background-size: contain;
+}
+
+#twoinone div:last-child{
+    background-image: url(../img/car2.jpg);
+    background-size: contain;
+}
+
+/* float 블록 요소 좌우로 배치하기 */
+#wrap{
+    width: 800px;
+    margin: 100px, auto;
+    border: 5px solid black;
+}
+
+#wrap .left{
+    width: 400px;
+    height: 400px;
+    background-color: pink;
+    float:left;
+}
+
+#wrap .right{
+    width: 400px;
+    height: 400px;
+    background-color: lightblue;
+    float:right;
+}
+
+#wrap::after{
+    content: " ";
+    display: block;
+    clear:both
+}
+
+/* float으로 이미지와 글 배치하기 */
+#float img{
+    width: 200px;
+    margin-right: 1rem;
+    float: left;
+}
+
+#float img{
+    width: 200px;
+    margin-left: 1rem;
+    float: right;
+}
