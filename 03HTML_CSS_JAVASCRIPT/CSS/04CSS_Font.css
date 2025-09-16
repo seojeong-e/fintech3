@@ -183,7 +183,7 @@ html {
     text-align: right;
 }
 #align p:nth-child(3){
-    text-align: cneter;
+    text-align: center;
 }
 #align p:nth-child(4){
     text-align: justify;

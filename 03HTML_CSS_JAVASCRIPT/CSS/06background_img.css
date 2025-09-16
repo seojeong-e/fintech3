@@ -249,3 +249,293 @@
     margin-left: 1rem;
     float: right;
 }
+
+/* position 요소를 자유롭게 배치하기 */
+/* relative: 적용된 요소의 현재 위치값을 기준으로
+             상대 위치를 정함 */
+/* absolute: 부모 요소의 특정 구간을 기준으로 절대 위치를 정함 */
+/* fixed: 웹브라우저를 기준으로 절대 위치를 지정 */
+
+#position .box{
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    line-height: 100px;
+    color: white;
+}
+
+#position .red-box{
+    background-color: red;
+}
+
+#position .green-box{
+    background-color: green;
+}
+
+#position .blue-box{
+    background-color: blue;
+}
+
+/* relative */
+/* #position .green-box{
+    position: relative;
+    left: 200px;
+    top: 200px
+    
+} */
+
+/* absolute */
+#position .blue-box{
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+
+/* fixed */
+/* #position .red-box{
+    position: fixed;
+    left: 400px;
+    top : 400px*/
+
+ /*겹쳐있는 요소의 z축 순서 정하기 */
+ /* z-index 숫자가 높으면 위로 올라감 */
+
+ #zindex {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 100px auto;
+    position: relative;
+ }
+ 
+ #zindex .zileft{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 3;
+ }
+
+ #zindex .zimiddle{
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    z-index: 2;
+ }
+
+ #zindex .ziright{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    z-index: 4;
+ }
+
+ /*  투명도 조절하기 opacity*/
+ /* 1은 불투명, 0 투명 */
+
+ #opacity {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 100px auto;
+    position: relative;
+ }
+ 
+ #opacity .opleft{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 3;
+    opacity: 0.5;
+ }
+
+ #opacity .opmiddle{
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    z-index: 2;
+    opacity: 0.3;
+ }
+
+ #opacity .opright{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    z-index: 4;
+    opacity: 0.7;
+ }
+
+ /* box-shadow, text-shadow 그림자 넣기 */
+ #shadow {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 100px auto;
+    position: relative;
+ }
+ 
+ #shadow .shleft{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 5;
+    opacity: 1;
+    font-size: 30px;
+    text-align: center;
+    line-height: 200px;
+    color: white;
+    text-shadow: 5px 5px 5px black;
+    box-shadow: -10px -10px 10px black;
+ }    /*왼쪽에서의 거리, 위에서.? 아래서?, 블러 처리 얼마나 할건지*/
+
+ #shadow .shmiddle{
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    z-index: 2;
+    opacity: 0.3;
+ }
+
+ #shadow .shright{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    position: absolute;
+    bottom: 00px;
+    right: 10px;
+    z-index: 4;
+    opacity: 1;
+    text-align: center;
+    line-height: 200px;
+    text-shadow: 5px 5px 5px white;
+ }
+
+
+ /* border-radius로 모서리 둥글게 만들기 */
+ #radius {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 100px auto;
+    position: relative;
+ }
+ 
+ #radius .left{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 5;
+    opacity: 1;
+    font-size: 30px;
+    text-align: center;
+    line-height: 200px;
+    color: white;
+    text-shadow: 5px 5px 5px black;
+    box-shadow: -10px -10px 10px black;
+    border-radius: 100px;
+    background-image:url(../img/다운로드2.png);
+ }    /*왼쪽에서의 거리, 위에서.? 아래서?, 블러 처리 얼마나 할건지*/
+
+ #radius .middle{
+    width: 200px;
+    height: 200px;
+    background-color: green;
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    z-index: 2;
+    opacity: 0.3;
+ }
+
+ #radius .right{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    position: absolute;
+    bottom: 00px;
+    right: 10px;
+    z-index: 6;
+    opacity: 1;
+    text-align: center;
+    line-height: 200px;
+    text-shadow: 5px 5px 5px white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    /* border-bottom-left-radius: 30px; */
+ }
+
+ /* filter로 특수효과 적용하기 */
+#filter .box{
+    width: 200px;
+    height: 200px;
+}
+
+ #filter div{
+    background-image: url(../img/rose.jpg);
+    background-size: contain;
+ }
+
+ #filter div:nth-child(1){
+    filter: blur(3px);
+ }
+
+ #filter div:nth-child(2){
+    filter: brightness(1.2);
+    /* brightness : 0~1 밖에 없음 */
+ } 
+
+ /* 100% 기준으로 작아지면 대비 감소 커지면 대비 증가 */
+ #filter div:nth-child(3){
+    filter: contrast(130%);
+ }
+
+ /* 100%에 가까울 수록 흑백*/
+ #filter div:nth-child(4){
+    filter: grayscale(70%);
+ }
+
+ /* hue-rotate: 0 원본색상 0~360deg까지 변경 가능 */
+ #filter div:nth-child(5){
+    filter: hue-rotate(270deg);
+ }
+
+ /* invert: 100%에 가까울 수록 색이 반대로 변환됨 */
+ #filter div:nth-child(6){
+    filter: invert(90%);
+ }
+
+ /* saturate: 0에 가까울 수록 채도가 낮아짐 0-1 범위 */
+ #filter div:nth-child(7){
+    filter: saturate(0.3);
+ }
+
+ /*sepia : 100%에 가까울 수록 갈색 톤으로 변경됨  */
+ #filter div:nth-child(8){
+    filter: sepia(100%);
+ }

@@ -1,0 +1,136 @@
+/* 콘텐츠 모양을 자유롭게 변형하기 */
+
+#transform section{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 50px;
+}
+
+#transform section article{
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    opacity: 0.3;
+}
+
+/* scale 확대/축소 */
+/* 1은 원래 크기 1보다 작으면 축소, 크면 확대 */
+
+#transform section:nth-child(1) article{
+    /* transform: scale(0.8); */
+    transform: scale(1.2);
+}
+
+/* 20도 만큼 비틀기 */
+#transform section:nth-child(2) article{
+    /* transform: scale(0.8); */
+    /* transform: skewY(20deg); */
+    transform: skewX(-20deg);
+}
+
+/* 요소를 이동 */
+/* translate 왼쪽 오른쪽 이동 */
+/* translateY 상하 이동 */
+#transform section:nth-child(3) article{
+    /* transform: translate(-50px); */
+    transform: translateY(50px);
+}
+
+/* 요소를 회전 rotate deg*/
+#transform section:nth-child(4) article{
+    transform: rotate(150deg);
+}
+
+/* 콘텐츠 모양을 자유롭게 변형하기2 */
+#transform2 section{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 50px;
+}
+
+#transform2 section article{
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    opacity: 0.3;
+}
+
+#transform2 section{
+    perspective: 400px;
+}
+
+/* rotateX */
+#transform2 section:nth-child(1) article{
+    transform: rotateX(45deg);
+}
+
+/* rotateY */
+#transform2 section:nth-child(2) article{
+    transform: rotateY(45deg);
+}
+
+#transform2 section:nth-child(3) article{
+    transform: translateZ(100px);
+}
+
+#transform2 section:nth-child(4) article{
+    transform: translateZ(-100px);
+}
+
+/* transition으로 전환효과 적용하기 */
+#transition .red_box{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    text-align: center;
+    color: white;
+    line-height: 100px;
+    margin-bottom: 10px;
+}
+
+#transition .red_box:hover{
+    background-color: blue;
+    transition-duration: 5s;
+    transition-delay: 1s;
+}
+
+.container .bar {
+    width: 10px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    background-color: gray;
+    color: white;
+    transition-property: width;
+    transition-duration: 5s;
+}
+
+.container:hover .bar{
+    width: 220px;
+}
+
+/* linear: 속도가 일정 */
+.bar:nth-child(1){
+    transition-timing-function: linear;
+}
+
+/* ease: 처음에는 속도가 빨라지다가 중간부터 느려짐 */
+.bar:nth-child(2){
+    transition-timing-function: ease;
+}
+
+/* ease-in: 처음속도는 느림, 점점 빨라짐 */
+.bar:nth-child(3){
+    transition-timing-function: ease-in;
+}
+
+/* ease-out:처음이 빠르고, 점점 느려짐 */
+.bar:nth-child(4){
+    transition-timing-function: ease-out;
+}
+
+/* ease-in-out:처음 느림, 중간 빠름, 마지막 느림 */
+.bar:nth-child(5){
+    transition-timing-function: ease-in-out;
+}
