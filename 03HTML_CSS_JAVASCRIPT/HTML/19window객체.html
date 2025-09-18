@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19 window 객체</title>
+    <style>
+        body{
+            width: 5000px;
+            height: 5000px;
+        }
+        div{
+            position: fixed;
+            top:10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="popup()">팝업</button>
+    <!-- 클릭이 일어나면 팝업 자바를 실행해라. -->
+<hr>
+<button onclick="printInfo()">window 객체 속성</button>
+
+<hr>
+<button onclick="sTo()">scrollTo(100,200)</button><br>
+<button onclick="sBy()">scrollBy(100,200)</button>
+
+
+    <script>
+        function popup(){
+        window.open('popup.html', '팝업', 'width=200, height=100');
+    }
+
+    function printInfo(){
+        document.write(`웹 브라우저의 너비: ${window.innerWidth}`);
+        document.write(`웹 브라우저의 높이: ${window.innerHeight}`);
+        document.write(`웹 브라우저의 창의 너비: ${window.outerWidth}`);
+        document.write(`웹 브라우저의 창의 높이: ${window.outerHeight}`);
+        document.write(`웹 브라우저의 창의 스크롤 가로 위치: ${window.scrollX}`);
+        document.write(`웹 브라우저의 창의 스크롤 세로 위치: ${window.scrollY}`);
+    };
+
+    function sTo(){
+        window.scrollTo(100,200);
+    }
+    function sBy(){
+        window.scrollBy(0,500);
+    }
+    // scrollTo :     , scrollBy
+
+
+    </script> 
+    <!-- 함수 만드는 명령어. 자바 -->
+    
+
+</body>
+</html>

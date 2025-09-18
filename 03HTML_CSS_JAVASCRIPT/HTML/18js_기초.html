@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18JS_기초</title>
+    <script>
+        console.log("안녕하세요_fromHTML");
+     
+    </script>
+    <script defer src="./js/01javascript.js"></script>
+    <link rel="stylesheet" href="../CSS/11javascript기초.css">
+</head>
+<body>
+    <!-- Javascript는 html문서의 body 태그 내에서 가장 아랫쪽에 넣는다. -->
+    <!-- Javascript는 <script></script> 안에 작성한다. -->
+    <!-- 외부에 .js 을 만들어서 javascript 코드를 작성하고 link 태그로 연결 -->
+
+    <h1 id="title">Javascript 기초</h1>
+
+    <hr>
+
+    <h1>클릭 이벤트 연결하기</h1>
+    <a href="https://www.naver.com">네이버 바로가기 click</a>
+
+<hr>
+
+<h1>마우스 호버 이벤트 연결하기</h1>
+<!-- 특정 영역에 마우스 포인터를 위치할 때 동작하는 호버 이벤트 연결 -->
+<div id="box"></div>
+
+<hr>
+
+<h1>반복되는 요소에 이벤트 한꺼번에 연결하기</h1>
+<ul class="list">
+    <li><a href="#">item1</a></li>
+    <li><a href="#">item2</a></li>
+    <li><a href="#">item3</a></li>
+    <li><a href="#">item4</a></li>
+</ul>
+
+<hr>
+
+<h1>클릭 이벤트가 발생할 때 숫자 증가, 감소하기</h1>
+<a href="#" class="btnPlus">Plus</a>
+<a href="#" class="btnMinus">Minus</a>
+
+<hr>
+
+<h1>버튼을 클릭하면 좌우로 회전하는 박스 만들기</h1>
+<a href="#" class="btnLeft">왼쪽으로 회전</a>
+<a href="#" class="btnRight">오른쪽으로 회전</a>
+<div id="box2"></div>
+
+</body>
+</html>

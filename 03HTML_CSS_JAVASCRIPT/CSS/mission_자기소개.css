@@ -1,0 +1,90 @@
+/* 자기소개.css */
+
+body{
+    background-color:aliceblue;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#intro{
+    width: 100%;
+    max-width: 950px;
+    text-align: center;
+}
+
+#intro > h1{
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color:black;
+}
+
+#intro > p{
+    color:#666;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+/*card */
+.card-container{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 20px;
+    width: 100%;
+    text-align: left;
+} 
+
+/* 모든 card 에 적용 */
+.card{
+    background-color:white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+} 
+
+.card h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+} 
+
+.card p,
+.card ul {
+    font-size: 1em;
+    font-weight: 400;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-left: 10;
+} 
+
+.card li{
+    margin-bottom: 8px;
+}
+
+.card a{
+    color: blue;
+    text-decoration:none;
+    font-weight: bold;
+    border-bottom: 2px dotted blue;
+}
+
+.card a:hover{
+    border-bottom-color: lightgrey;
+};
+
+.card:nth-child(1){
+    grid-row: span 2;
+}
+
+footer{
+    margin-top: 40px;
+    color: #777;
+    font-size: 0.9em;
+} 
