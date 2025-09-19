@@ -2,7 +2,7 @@
 
 body{
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 30px;
 }
 
 h1{
@@ -11,18 +11,28 @@ h1{
 }
 
 .grid-frame{
-    display :gird;
+    display :grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    max-width: 900px;
+    gap: 15px;
+    max-width: 960px;
     margin: 0 auto;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background-color: white;
 }
 
-.grid-frame img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    display: block; 
-    border-radius: 10px; 
+.grid-item{
+    aspect-ratio: 1/1;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
+.grid-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+}

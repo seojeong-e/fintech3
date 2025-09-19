@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mission_js마우스 스크롤 자동화</title>
+</head>
+<style>
+      body{
+            width: 5000px;
+            height: 5000px;
+        }
+        div{
+            position: fixed;
+            top:10px;
+            left: 10px;
+        }
+</style>
+
+<body>
+    <button onclick="sTo()">scrollTo 가장 마지막 페이지</button><br>
+    <button onclick="sBy()">scrollBy 가장 마지막 페이지</button>
+
+    <script>
+        function sTo(){
+            window.scrollTo(5000,5000);
+        }
+        function sBy(){
+            window.scrollBy(0,5000);
+        }
+    </script>
+
+</body>
+</html>
