@@ -1,0 +1,4 @@
+id,name,hobbies,address.city,address.zip
+1,Alice,reading,Seoul,12345
+1,Alice,traveling,Seoul,12345
+2,Bob,gaming,Busan,67890
