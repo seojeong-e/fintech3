@@ -4,3 +4,4 @@
 *.xlsx
 .env
 .env*
+.env_db
