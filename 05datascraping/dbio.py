@@ -13,6 +13,11 @@ addr = os.getenv("addr")
 port = os.getenv("port")
 
 def db_connect(dbname):
+    engine_root = create_engine(f"mysql+pymysql://{db_id}:{db_pw}@{addr}:{port}")
+    with engine_root.connect() as conn:
+        conn.execute(text(f"create database if not exists {dbname}"))
+        print(f"{dbname} 데이터베이스 확인/생성 완료")
+        
     engine = create_engine(f"mysql+pymysql://{db_id}:{db_pw}@{addr}:{port}/{dbname}")
     conn = engine.connect()
     return conn
