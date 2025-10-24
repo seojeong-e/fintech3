@@ -5,3 +5,7 @@
 .env
 .env*
 .env_db
+build/
+dist/
+*.spec
+*.exe
