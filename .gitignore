@@ -9,3 +9,6 @@ build/
 dist/
 *.spec
 *.exe
+.tsv
+*.tsv
+data/
