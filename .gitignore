@@ -12,3 +12,4 @@ dist/
 .tsv
 *.tsv
 data/
+autogluon_salary_model
