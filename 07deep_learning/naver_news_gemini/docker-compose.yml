@@ -1,0 +1,10 @@
+
+services:
+  naver-news-gemini:
+    build: .
+    container_name: naver-news-gemini
+    ports:
+      - "7860:7860"
+    env_file:
+      - .env_gemini
+    restart: unless-stopped
