@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyFin V2.0 Prototype</title>
+  
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <style>
+    /* ===============================
+       Global Base (Toss-like clean UI)
+       =============================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Noto Sans KR", system-ui, -system-ui, "Segoe UI", sans-serif;
+      font-size: 14px; line-height: 1.4; background: #f3f4f6; color: #111827;
+    }
+
+    /* Mobile Container */
+    .mobile-container {
+      width: 390px; max-width: 100%; margin: 24px auto; background: #ffffff;
+      border-radius: 28px; box-shadow: 0 22px 45px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(148, 163, 184, 0.4); overflow: hidden;
+      display: flex; flex-direction: column; min-height: 800px;
+    }
+    #root { flex: 1; min-height: 100%; display: flex; flex-direction: column; }
+
+    /* Screen Layout */
+    .screen { display: flex; flex-direction: column; height: 100%; background: #f9fafb; flex: 1; }
+    .screen__content { flex: 1; padding: 16px; overflow-y: auto; }
+    .screen__content::-webkit-scrollbar { width: 4px; }
+    .screen__content::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.7); border-radius: 999px; }
+
+    /* App Bar */
+    .appbar {
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; background: #ffffff; border-bottom: 1px solid #e5e7eb;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .appbar__title { font-size: 16px; font-weight: 600; color: #111827; }
+    .appbar__actions { display: flex; align-items: center; gap: 4px; }
+    .icon-button {
+      border: none; background: transparent; width: 30px; height: 30px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center; font-size: 16px;
+      cursor: pointer; color: #4b5563; transition: background 0.16s ease-out;
+    }
+    .icon-button:hover { background: #eef2ff; }
+
+    /* Cards */
+    .card {
+      background: #ffffff; border-radius: 16px; padding: 16px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.07); border: 1px solid #e5e7eb; margin-bottom: 12px;
+    }
+    .card h2 { margin-top: 0; font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+
+    /* Forms */
+    .input, .textarea {
+      width: 100%; border-radius: 12px; border: 1px solid #e5e7eb; padding: 10px 12px;
+      font-size: 13px; outline: none; background: #f9fafb;
+    }
+    .input:focus, .textarea:focus {
+      border-color: #2563eb; box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25); background: #ffffff;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 40px;
+      padding: 0 14px; border-radius: 999px; border: none; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.16s;
+    }
+    .btn--primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.45); width: 100%;
+    }
+    .btn--primary:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(37, 99, 235, 0.5); }
+    .btn--secondary { background: #f3f4f6; color: #374151; border: 1px solid #d1d5db; width: 100%; }
+
+    /* Chips */
+    .chip-row { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 12px; padding-bottom: 4px; }
+    .chip {
+      border-radius: 999px; border: none; padding: 6px 12px; font-size: 12px;
+      background: #e5e7eb; color: #4b5563; cursor: pointer; white-space: nowrap;
+    }
+    .chip--active { background: #2563eb; color: #ffffff; box-shadow: 0 8px 18px rgba(37, 99, 235, 0.4); }
+
+    /* Asset & Lists */
+    .asset__total { font-size: 14px; margin-bottom: 8px; color: #374151; }
+    .asset__total strong { font-size: 18px; color: #111827; }
+    .asset__breakdown { list-style: none; padding: 0; margin: 0; border-radius: 12px; background: #f9fafb; border: 1px solid #e5e7eb; overflow: hidden; }
+    .asset__breakdown li { display: flex; justify-content: space-between; padding: 8px 12px; font-size: 13px; color: #4b5563; }
+    .asset__breakdown li:nth-child(odd) { background: #f3f4f6; }
+    
+    .simple-list, .market-list, .account-list { list-style: none; margin: 0; padding: 0; }
+    .simple-list li, .market-list__item, .account-list__item { padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+    .market-list__item { cursor: pointer; }
+    .market-list__title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+    .market-list__meta { display: flex; justify-content: space-between; font-size: 12px; color: #6b7280; }
+    
+    /* Risk Badges */
+    .risk { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .risk--low { background: #ecfdf3; color: #15803d; }
+    .risk--mid { background: #fef9c3; color: #92400e; }
+    .risk--high { background: #fef2f2; color: #b91c1c; }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      position: sticky; bottom: 0; left: 0; right: 0; display: flex;
+      border-top: 1px solid #e5e7eb; background: #ffffff; padding: 8px 0; justify-content: space-around;
+      z-index: 10;
+    }
+    .bottom-nav__item {
+      background: none; border: none; padding: 4px 8px; display: flex; flex-direction: column;
+      align-items: center; font-size: 11px; color: #9ca3af; cursor: pointer;
+    }
+    .bottom-nav__item--active { color: #2563eb; font-weight: 600; }
+    .bottom-nav__label { margin-top: 2px; }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.45);
+      display: flex; align-items: center; justify-content: center; z-index: 50;
+    }
+    .modal__content {
+      width: 90%; max-width: 320px; background: #ffffff; border-radius: 20px;
+      padding: 18px 16px; box-shadow: 0 24px 55px rgba(15, 23, 42, 0.55);
+    }
+    .modal__code { font-size: 12px; color: #6b7280; margin-bottom: 8px; }
+
+    h1 { font-size: 26px; font-weight: 800; margin-bottom: 4px; color: #0f172a; }
+  </style>
+</head>
+
+<body>
+<div class="mobile-container">
+  <div id="root"></div>
+</div>
+
+<script type="text/babel" data-presets="react">
+
+/*******************************************************
+ * 1. Common Components
+ *******************************************************/
+
+// AppBar: 상단 타이틀 및 액션바
+function AppBar({ title }) {
+  return (
+    <header className="appbar">
+      <div className="appbar__title">{title}</div>
+      <div className="appbar__actions">
+        <button className="icon-button" onClick={() => alert("검색(준비중)")}>🔍</button>
+        <button className="icon-button" onClick={() => alert("알림(준비중)")}>🔔</button>
+      </div>
+    </header>
+  );
+}
+
+// BottomNav: 하단 탭 네비게이션
+function BottomNav({ active, onNavigate }) {
+  const items = [
+    { id: "home", label: "홈" },
+    { id: "market", label: "마켓" },
+    { id: "live", label: "라이브" },
+    { id: "community", label: "커뮤니티" },
+    { id: "my", label: "마이" },
+  ];
+
+  return (
+    <nav className="bottom-nav">
+      {items.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          className={"bottom-nav__item" + (active === item.id ? " bottom-nav__item--active" : "")}
+          onClick={() => onNavigate(item.id)}
+        >
+          <span className="bottom-nav__label">{item.label}</span>
+        </button>
+      ))}
+    </nav>
+  );
+}
+
+/*******************************************************
+ * 2. Screen Components (Pages)
+ *******************************************************/
+
+// [Screen 1] Auth / Login
+function AuthScreen({ onLogin }) {
+  const [tab, setTab] = React.useState("login");
+  const [email, setEmail] = React.useState("");
+  const [agree, setAgree] = React.useState(false);
+
+  const handleSubmit = () => {
+    if (tab === "signup" && !agree) {
+      alert("필수 약관에 동의해주세요.");
+      return;
+    }
+    // 시뮬레이션: 로그인 성공 처리
+    onLogin();
+  };
+
+  return (
+    <div className="screen">
+      <div className="screen__content" style={{ padding: "32px 20px" }}>
+        <h1 style={{ marginTop: "40px" }}>EasyFin V2.0</h1>
+        <p style={{ color: "#6b7280", marginBottom: "32px" }}>
+          내 모든 자산을 한눈에,<br/>라이브로 쉽게 이해하는 금융 서비스
+        </p>
+
+        {/* 탭 */}
+        <div className="chip-row" style={{ justifyContent: 'center' }}>
+          <button className={"chip" + (tab === "login" ? " chip--active" : "")} onClick={() => setTab("login")} style={{flex:1, textAlign:'center'}}>로그인</button>
+          <button className={"chip" + (tab === "signup" ? " chip--active" : "")} onClick={() => setTab("signup")} style={{flex:1, textAlign:'center'}}>회원가입</button>
+        </div>
+
+        <section className="card" style={{ marginTop: "20px" }}>
+          <h2>{tab === "login" ? "이메일 로그인" : "이메일로 시작하기"}</h2>
+          <input type="email" placeholder="이메일" className="input" value={email} onChange={(e) => setEmail(e.target.value)} style={{marginBottom:"8px"}} />
+          <input type="password" placeholder="비밀번호" className="input" style={{marginBottom:"8px"}} />
+          
+          {tab === "signup" && (
+            <label style={{ display: "block", fontSize: "13px", marginTop: "4px" }}>
+              <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} style={{ marginRight: "6px" }} />
+              서비스 이용 약관 동의 (필수)
+            </label>
+          )}
+
+          <button className="btn btn--primary" style={{ marginTop: "16px" }} onClick={handleSubmit}>
+            {tab === "login" ? "로그인" : "가입하기"}
+          </button>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+// [Screen 2] Home / Dashboard
+function HomeScreen({ onNavigate }) {
+  const totalAsset = 123450000;
+  const breakdown = [
+    { label: "예금", amount: 35000000 }, { label: "주식", amount: 48000000 },
+    { label: "ETF", amount: 20000000 }, { label: "채권", amount: 10000000 },
+  ];
+  const accounts = [
+    { id: 1, name: "토스뱅크 · 통합입출금", balance: 12340000 },
+    { id: 2, name: "KB증권 · 국내주식", balance: 48000000 },
+  ];
+
+  return (
+    <div className="screen">
+      <AppBar title="홈" />
+      <div className="screen__content">
+        
+        {/* FR-A01 AI Briefing */}
+        <section className="card" style={{ background: "#eff6ff", borderColor: "#bfdbfe" }}>
+          <h2 style={{ color: "#1e40af" }}>🤖 AI 자산 브리핑</h2>
+          <p style={{ fontSize: "13px", color: "#1e3a8a" }}>지난주 대비 자산이 <strong>+2.3%</strong> 성장했습니다.</p>
+          <ul className="simple-list" style={{ marginTop: "8px", fontSize: "12px", color: "#1e3a8a" }}>
+            <li style={{ background: "transparent", padding: "4px 0" }}>• 주식/ETF 비중(65%)이 공격적입니다.</li>
+            <li style={{ background: "transparent", padding: "4px 0" }}>• 변동성 높은 종목 2개가 감지되었습니다.</li>
+          </ul>
+        </section>
+
+        {/* Assets */}
+        <section className="card">
+          <h2>통합 자산 현황</h2>
+          <div className="asset__total">총 자산 <strong>{totalAsset.toLocaleString()} KRW</strong></div>
+          <ul className="asset__breakdown">
+            {breakdown.map((item) => (
+              <li key={item.label}><span>{item.label}</span><span>{item.amount.toLocaleString()}원</span></li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Accounts */}
+        <section className="card">
+          <h2>내 계좌</h2>
+          <ul className="account-list">
+            {accounts.map((acc) => (
+              <li key={acc.id} className="account-list__item">
+                <div className="market-list__title">{acc.name}</div>
+                <div className="account-list__balance">{acc.balance.toLocaleString()}원</div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Live Recommendation */}
+        <section className="card">
+          <h2>추천 라이브</h2>
+          <ul className="simple-list">
+             <li onClick={() => onNavigate('live')} style={{cursor:'pointer'}}>📺 오늘 밤 9시 · ETF 월배당 포트폴리오</li>
+          </ul>
+        </section>
+      </div>
+      <BottomNav active="home" onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+// [Screen 3] Market
+function MarketScreen({ onNavigate }) {
+  const categories = ["전체", "공모주", "ETF", "채권", "리츠"];
+  const dummyItems = [
+    { id: 1, name: "에코그린 공모주", code: "IPO-2401", category: "공모주", risk: "mid", yield: 12.4, desc: "친환경 에너지 기업 신규 상장" },
+    { id: 2, name: "KODEX 200", code: "ETF-200", category: "ETF", risk: "low", yield: 4.8, desc: "국내 대표 지수 추종 ETF" },
+    { id: 3, name: "미래형 성장 ETF", code: "ETF-500", category: "ETF", risk: "high", yield: 8.2, desc: "AI/바이오 테마 ETF" },
+    { id: 4, name: "국채 10년물", code: "BOND-10Y", category: "채권", risk: "low", yield: 3.1, desc: "안정적인 국채 상품" },
+  ];
+  const riskMap = { low: "낮음", mid: "중간", high: "높음" };
+
+  const [cat, setCat] = React.useState("전체");
+  const [selected, setSelected] = React.useState(null);
+
+  const filtered = cat === "전체" ? dummyItems : dummyItems.filter(i => i.category === cat);
+
+  return (
+    <div className="screen">
+      <AppBar title="마켓" />
+      <div className="screen__content">
+        <div className="chip-row">
+          {categories.map(c => (
+            <button key={c} className={"chip" + (cat === c ? " chip--active" : "")} onClick={() => setCat(c)}>{c}</button>
+          ))}
+        </div>
+
+        <section className="card">
+          <h2>투자 상품</h2>
+          <ul className="market-list">
+            {filtered.map(item => (
+              <li key={item.id} className="market-list__item" onClick={() => setSelected(item)}>
+                <div className="market-list__title">{item.name}</div>
+                <div className="market-list__meta">
+                  <span>{item.category}</span>
+                  <span className={"risk risk--" + item.risk}>위험도 {riskMap[item.risk]}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* AI Recommendation Placeholder */}
+        <p style={{ fontSize: "12px", color: "#6b7280", textAlign: "center", marginTop: "12px" }}>
+          🤖 AI가 고객님의 투자 성향에 맞는 상품을 분석 중입니다...
+        </p>
+
+        {selected && (
+          <div className="modal" onClick={() => setSelected(null)}>
+            <div className="modal__content" onClick={e => e.stopPropagation()}>
+              <h3>{selected.name}</h3>
+              <p className="modal__code">{selected.code}</p>
+              <p>{selected.desc}</p>
+              <p style={{marginTop: "8px"}}>예상 수익률: <strong>{selected.yield}%</strong></p>
+              <button className="btn btn--secondary" style={{ marginTop: "12px" }} onClick={() => alert("AI에게 상세 분석 요청")}>🤖 AI에게 물어보기</button>
+              <button className="btn btn--primary" style={{ marginTop: "8px" }} onClick={() => setSelected(null)}>닫기</button>
+            </div>
+          </div>
+        )}
+      </div>
+      <BottomNav active="market" onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+// [Screen 4] Live
+function LiveScreen({ onNavigate }) {
+  const tabs = ["진행중", "예정", "다시보기"];
+  const [activeTab, setActiveTab] = React.useState("진행중");
+
+  const lives = [
+    { id: 1, title: "ETF로 만드는 월배당", host: "김전문", status: "진행중", count: 2200 },
+    { id: 2, title: "공모주 완전정복", host: "IPO헌터", status: "예정", count: 0 },
+    { id: 3, title: "채권 투자 기초", host: "채권마스터", status: "다시보기", count: 1500 },
+  ];
+  const list = lives.filter(l => l.status === activeTab);
+
+  return (
+    <div className="screen">
+      <AppBar title="라이브" />
+      <div className="screen__content">
+        <div className="chip-row">
+          {tabs.map(t => (
+            <button key={t} className={"chip" + (activeTab === t ? " chip--active" : "")} onClick={() => setActiveTab(t)}>{t}</button>
+          ))}
+        </div>
+        <section className="card">
+          <h2>{activeTab} 방송</h2>
+          <ul className="market-list">
+            {list.length === 0 ? <p style={{color:'#999', padding:'10px'}}>목록이 없습니다.</p> : list.map(l => (
+              <li key={l.id} className="market-list__item" onClick={() => alert("영상 플레이어 데모\n(추후 AI 요약 및 Q&A 하이라이트 제공)")}>
+                <div className="market-list__title">{l.title}</div>
+                <div className="market-list__meta">
+                  <span>{l.host}</span>
+                  {activeTab === "진행중" && <span style={{color: "red"}}>● {l.count}명 시청중</span>}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+      <BottomNav active="live" onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+// [Screen 5] Community
+function CommunityScreen({ onNavigate }) {
+  const [posts, setPosts] = React.useState([
+    { id: 1, title: "ETF 초보 질문드립니다", content: "무엇부터 공부해야 할까요?", author: "지현" },
+    { id: 2, title: "오늘 공모주 보셨나요?", content: "경쟁률 대박이네요.", author: "투자왕" },
+  ]);
+  const [title, setTitle] = React.useState("");
+  const [content, setContent] = React.useState("");
+  const [openId, setOpenId] = React.useState(null);
+
+  const addPost = () => {
+    if (!title) return alert("제목을 입력하세요");
+    setPosts([...posts, { id: Date.now(), title, content, author: "나" }]);
+    setTitle(""); setContent("");
+  };
+
+  return (
+    <div className="screen">
+      <AppBar title="커뮤니티" />
+      <div className="screen__content">
+        <section className="card">
+          <h2>글쓰기</h2>
+          <input className="input" placeholder="제목" value={title} onChange={e => setTitle(e.target.value)} style={{marginBottom:"6px"}}/>
+          <textarea className="input" placeholder="내용" value={content} onChange={e => setContent(e.target.value)} style={{height:"60px", marginBottom:"8px"}}/>
+          <button className="btn btn--primary" onClick={addPost}>등록</button>
+        </section>
+
+        <section className="card">
+          <h2>게시글</h2>
+          <ul className="market-list">
+            {posts.map(p => (
+              <li key={p.id} className="market-list__item" onClick={() => setOpenId(openId === p.id ? null : p.id)}>
+                <div className="market-list__title">{p.title}</div>
+                <div className="market-list__meta"><span>{p.author}</span></div>
+                {openId === p.id && <p style={{marginTop:"8px", color:"#374151", background:"#f3f4f6", padding:"8px", borderRadius:"8px"}}>{p.content}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+      <BottomNav active="community" onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+// [Screen 6] My Page
+function MyScreen({ onNavigate, onLogout }) {
+  return (
+    <div className="screen">
+      <AppBar title="마이" />
+      <div className="screen__content">
+        <section className="card">
+          <h2>내 프로필</h2>
+          <p><strong>박지현</strong> (jihyun.marketer)</p>
+          <button className="btn btn--secondary" style={{marginTop:"12px"}} onClick={onLogout}>로그아웃</button>
+        </section>
+        <section className="card">
+          <h2>연동된 금융사</h2>
+          <ul className="simple-list">
+            <li>토스뱅크</li><li>KB증권</li><li>미래에셋증권</li>
+          </ul>
+        </section>
+        <section className="card">
+          <h2>팔로우 전문가</h2>
+          <ul className="simple-list">
+            <li>@value_investor</li><li>@ipo_hunter</li>
+          </ul>
+        </section>
+      </div>
+      <BottomNav active="my" onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+/*******************************************************
+ * 3. Main App (Router Logic)
+ *******************************************************/
+function App() {
+  const [screen, setScreen] = React.useState("auth"); // auth, home, market, live, community, my
+
+  const handleLogin = () => setScreen("home");
+  const handleLogout = () => setScreen("auth");
+  const handleNavigate = (target) => setScreen(target);
+
+  return (
+    <>
+      {screen === "auth" && <AuthScreen onLogin={handleLogin} />}
+      {screen === "home" && <HomeScreen onNavigate={handleNavigate} />}
+      {screen === "market" && <MarketScreen onNavigate={handleNavigate} />}
+      {screen === "live" && <LiveScreen onNavigate={handleNavigate} />}
+      {screen === "community" && <CommunityScreen onNavigate={handleNavigate} />}
+      {screen === "my" && <MyScreen onNavigate={handleNavigate} onLogout={handleLogout} />}
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+
+</script>
+</body>
+</html>
